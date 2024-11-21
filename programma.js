@@ -13,15 +13,36 @@ for (const element of elementi) {
     elemento.style.left = 100 * (element.xpos - 1) + 'px';
     elemento.style.top = 120 * (element.ypos - 1) + 'px';
     elemento.style.backgroundColor = '#' + element['cpk-hex'];
+    elemento.style.boxSizing = 'border-box';
+    elemento.style.borderWidth = '0.5px'
+
+    elemento.addEventListener('click', () => {
+        let immagineScheda = document.getElementById('immagine-scheda');
+        immagineScheda.src = element.image.url;
+        immagineScheda.style.borderStyle = 'solid';
+        
+
+        let titoloScheda = document.getElementById('titolo-scheda');
+        titoloScheda.innerText = element.name;
+
+        let descrizioneScheda = document.getElementById('descrizione-scheda');
+        descrizioneScheda.innerText = element.summary;
+
+        let categoriaScheda = document.getElementById('categoria-scheda');
+        categoriaScheda.innerText = "Category: " + element.category;
+    })
 
     let numeroAtomico = document.createElement('p');
     numeroAtomico.innerText = element.number;
+    numeroAtomico.style.textAlign = 'left';
     elemento.appendChild(numeroAtomico);
 
     let simbolo = document.createElement('a');
     simbolo.innerText = element.symbol;
     simbolo.href = element.source;
-    simbolo.style.fontSize = '25px'
+    simbolo.style.fontSize = '25px';
+    simbolo.style.textDecoration = 'none';
+    simbolo.style.fontWeight = 'bold';
     elemento.appendChild(simbolo);
 
     let nome = document.createElement('p');
